@@ -1,11 +1,8 @@
-const path = require('path')
 const express = require('express')
 const bodyParser = require('body-parser')
 const feedRoutes = require('./routes/feed')
 const authRoutes = require('./routes/auth')
 const mongoose = require('mongoose')
-const multer = require('multer')
-const {v4: uuidv4} = require('uuid')
 const app = express()
 const MONGODB_URI = process.env.MONGODB_URI
 const helmet = require('helmet')
