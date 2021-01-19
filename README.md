@@ -7,6 +7,7 @@ This is the first project I've worked on using Nodejs and it is part of an Acade
 - Nodejs with Expressjs
 - MongoDB with mongoose
 - Websocket with Socket.io
+- Deployed with Heroku
 
 Other packages
 
