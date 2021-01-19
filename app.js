@@ -11,28 +11,9 @@ const MONGODB_URI = process.env.MONGODB_URI
 const helmet = require('helmet')
 const compression = require('compression')
 
-const fileStorage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, 'images');
-    },
-    filename: (req, file, cb) => {
-      cb(null, new Date().getTime() + '-' + file.originalname);
-    }
-  });
-
-  const fileFilter = (req, file, cb) => {
-    if (file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg'){
-      cb(null, true);
-    } else {
-      cb(null, false);
-    }
-  }
-
 app.use(helmet())
 app.use(compression())
 app.use(bodyParser.json())
-app.use(multer({storage: fileStorage, fileFilter: fileFilter}).single('image'));
-app.use('/images', express.static(path.join(__dirname, 'images')));
 
 
 //Headers to avoid cors errors
@@ -57,7 +38,7 @@ app.use((error, req, res, next) => {
 mongoose
   .connect(MONGODB_URI)
   .then((result) => {
-    const server = app.listen(process.env.port || 8080);
+    const server = app.listen(process.env.PORT || 8080);
     const io = require('./socket').init(server); //Socket.io initialization
     io.on("connection", (socket) => {
       console.log("Client connected");
