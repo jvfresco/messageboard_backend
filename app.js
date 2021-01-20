@@ -1,15 +1,13 @@
-const path = require('path')
 const express = require('express')
 const bodyParser = require('body-parser')
 const feedRoutes = require('./routes/feed')
 const authRoutes = require('./routes/auth')
 const mongoose = require('mongoose')
-const multer = require('multer')
-const {v4: uuidv4} = require('uuid')
 const app = express()
 const MONGODB_URI = process.env.MONGODB_URI
 const helmet = require('helmet')
 const compression = require('compression')
+const client = process.env.CLIENT
 
 app.use(helmet())
 app.use(compression())
@@ -39,7 +37,7 @@ mongoose
   .connect(MONGODB_URI)
   .then((result) => {
     const server = app.listen(process.env.PORT || 8080);
-    const io = require('./socket').init(server); //Socket.io initialization
+    const io = require('./socket').init(server, client); //Socket.io initialization
     io.on("connection", (socket) => {
       console.log("Client connected");
     });
