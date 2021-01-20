@@ -6,6 +6,8 @@ This is the first project I've worked on using Nodejs and it is part of an Acade
 
 The front end may be found [here](https://github.com/jvfresco/messageboard_frontend/)
 
+Technologies:
+
 - Nodejs with Expressjs
 - MongoDB with mongoose
 - Websocket with Socket.io
