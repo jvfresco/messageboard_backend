@@ -13,7 +13,7 @@ Technologies:
 - Websocket with Socket.io
 - Deployed with Heroku
 
-Other packages
+Other packages:
 
 - Bodyparser
 - Expresss-validator
